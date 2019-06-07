@@ -6,7 +6,7 @@ This is an example of how you can use [Filebeat](https://www.elastic.co/guide/en
 ## Installation and setup
 
 ### Log to a file on the persistent volume
-Begin by logging JSON structured data to `/persistent/app-metrics.log`.  I chose to use [pino](https://github.com/pinojs/pino), but you can use the JSON logger of your choice or write directly to the file (one object per line).  On OakOS we want this file to be persistent and more importantly shared between multiple containers.  So we place it on the `/persistent/` volume.  In your dev environment you'll want to duplicate this by creating a directory somewhere and creating a bind mount (`--mount source=YOURDIR,target=/persistent,type=bind`) to any containers that need to access it. 
+Begin by logging JSON structured data to `/persistent/app-metrics.log`.  You can look at [this project](https://github.com/shermanhuman/metrics-canon) to get an idea of how to do this.  On OakOS we want this file to be persistent and more importantly shared between multiple containers.  So we place it on the `/persistent/` volume.  In your dev environment you'll want to duplicate this by creating a directory somewhere and creating a bind mount (`--mount source=YOURDIR,target=/persistent,type=bind`) to any containers that need to access it. 
 
 ### Run the filebeats container on your local workstation
 The logz.io token is passed to the container with the `FILEBEATTOKEN` environment variable like so:
